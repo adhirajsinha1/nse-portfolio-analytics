@@ -7,7 +7,7 @@ returns, risk (volatility, drawdown, beta, VaR), risk-adjusted performance (Shar
 with an honest out-of-sample backtest.
 
 ## Interactive dashboard
-**▶ Live app: _link coming soon_**
+**▶ Live app: [nse-portfolio-adhiraj.streamlit.app](https://nse-portfolio-adhiraj.streamlit.app/)**
 
 ![Dashboard preview](reports/figures/00_dashboard_preview.png)
 
