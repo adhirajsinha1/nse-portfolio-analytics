@@ -17,14 +17,16 @@ Python (yfinance, pandas, NumPy, SciPy) · SQL (DuckDB) · Matplotlib / Plotly �
 
 ## Pipeline
 ```
-config/universe.csv → src/fetch_prices.py (Yahoo Finance API) → data/raw/prices.parquet + DuckDB
-                    → cleaning & returns → analysis notebooks → Streamlit dashboard
+config/universe.csv → src/fetch_prices.py (Yahoo Finance API) → data/raw/prices.parquet + DuckDB raw
+                    → src/build_models.py → staging.clean_prices → marts.daily_returns / annual_returns (+ tests)
+                    → analysis notebooks → Streamlit dashboard
 ```
 
 ## Project structure
 ```
 config/        stock universe (edit to analyse different stocks)
 data/raw/      price snapshot (Parquet), committed for reproducibility
+sql/           cleaning models, analysis tables and data tests
 src/           pipeline scripts + shared chart style
 notebooks/     analysis notebooks
 reports/       written findings and charts
@@ -35,12 +37,13 @@ reports/       written findings and charts
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 python src/fetch_prices.py      # downloads fresh prices into DuckDB
+python src/build_models.py      # cleans prices, builds returns tables, runs 6 data tests
 ```
 Then open the notebooks in `notebooks/` in order.
 
 ## Progress
 - [x] Data pipeline and data quality checks ([report](reports/data_quality_report.md))
-- [ ] Returns and performance vs Nifty 50
+- [x] Returns and performance vs Nifty 50 ([notebook](notebooks/02_returns_performance.ipynb))
 - [ ] Risk metrics and COVID crash case study
 - [ ] Diversification, optimisation and out-of-sample backtest
 - [ ] Interactive dashboard
