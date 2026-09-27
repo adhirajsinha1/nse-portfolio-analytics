@@ -27,7 +27,7 @@ config/universe.csv → src/fetch_prices.py (Yahoo Finance API) → data/raw/pri
 config/        stock universe (edit to analyse different stocks)
 data/raw/      price snapshot (Parquet), committed for reproducibility
 sql/           cleaning models, analysis tables and data tests
-src/           pipeline scripts, reusable risk metrics (metrics.py), chart style
+src/           pipeline scripts, reusable risk metrics (metrics.py), optimisation & backtesting (optimize.py), chart style
 notebooks/     analysis notebooks
 reports/       written findings and charts
 ```
@@ -45,7 +45,7 @@ Then open the notebooks in `notebooks/` in order.
 - [x] Data pipeline and data quality checks ([report](reports/data_quality_report.md))
 - [x] Returns and performance vs Nifty 50 ([notebook](notebooks/02_returns_performance.ipynb))
 - [x] Risk metrics and COVID crash case study ([notebook](notebooks/03_risk_analysis.ipynb))
-- [ ] Diversification, optimisation and out-of-sample backtest
+- [x] Diversification, optimisation and out-of-sample backtest ([notebook](notebooks/04_portfolio_optimisation.ipynb))
 - [ ] Interactive dashboard
 - [ ] Final findings and recommendations
 
