@@ -68,3 +68,33 @@ def buy_and_hold(returns, weights):
     growth = (1 + returns.fillna(0)).cumprod()
     value = growth.mul(weights, axis=1).sum(axis=1)
     return value.pct_change().fillna(value.iloc[0] - 1)
+
+
+def walk_forward(stock_returns, strategy, lookback_days=756, max_weight=0.20, cost=0.002, start_year=2019):
+    """
+    Honest out-of-sample backtest. Every January: choose weights using ONLY the previous
+    `lookback_days` of data, hold them for the year (letting them drift), charge `cost` on turnover.
+    strategy: "Equal-weight" | "Min-volatility" | "Max-Sharpe".
+    Returns (daily portfolio returns, average Sharpe the strategy expected in training).
+    """
+    daily, predicted, previous = [], [], None
+    for year in range(start_year, stock_returns.index[-1].year + 1):
+        train = stock_returns[stock_returns.index < f"{year}-01-01"].iloc[-lookback_days:]
+        test = stock_returns[(stock_returns.index >= f"{year}-01-01") & (stock_returns.index < f"{year + 1}-01-01")]
+        if test.empty or len(train) < 60:
+            continue
+        mu, cov = annualised_inputs(train)
+        if strategy == "Equal-weight":
+            w = pd.Series(1 / len(mu), index=mu.index)
+        elif strategy == "Min-volatility":
+            w = min_vol_weights(mu, cov, max_weight)
+        else:
+            w = max_sharpe_weights(mu, cov, max_weight)
+        predicted.append(portfolio_stats(w.values, mu, cov)[2])
+        year_returns = buy_and_hold(test, w)
+        turnover = 1.0 if previous is None else (w - previous).abs().sum()
+        year_returns.iloc[0] -= cost * turnover
+        daily.append(year_returns)
+        end_value = (1 + test).prod() * w
+        previous = end_value / end_value.sum()
+    return pd.concat(daily), float(np.mean(predicted))
