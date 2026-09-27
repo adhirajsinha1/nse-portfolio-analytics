@@ -1,0 +1,16 @@
+# The database is rebuilt from data/raw by src/fetch_prices.py
+data/*.duckdb
+data/*.duckdb.wal
+
+# Python / Jupyter clutter
+.venv*/
+__pycache__/
+.ipynb_checkpoints/
+
+# Mac clutter
+.DS_Store
+
+# Personal study notes (kept locally, not published)
+LEARNING_NOTES.md
+INTERVIEW_PREP.md
+DEMO_GUIDE.md

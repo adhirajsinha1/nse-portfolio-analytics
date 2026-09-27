@@ -1,0 +1,29 @@
+ticker,name,sector
+HDFCBANK.NS,HDFC Bank,Financials
+ICICIBANK.NS,ICICI Bank,Financials
+SBIN.NS,State Bank of India,Financials
+KOTAKBANK.NS,Kotak Mahindra Bank,Financials
+BAJFINANCE.NS,Bajaj Finance,Financials
+TCS.NS,Tata Consultancy Services,IT
+INFY.NS,Infosys,IT
+HCLTECH.NS,HCL Technologies,IT
+WIPRO.NS,Wipro,IT
+RELIANCE.NS,Reliance Industries,Energy
+NTPC.NS,NTPC,Energy
+ONGC.NS,Oil & Natural Gas Corp,Energy
+HINDUNILVR.NS,Hindustan Unilever,Consumer Staples
+ITC.NS,ITC,Consumer Staples
+NESTLEIND.NS,Nestle India,Consumer Staples
+MARUTI.NS,Maruti Suzuki,Auto
+M&M.NS,Mahindra & Mahindra,Auto
+BAJAJ-AUTO.NS,Bajaj Auto,Auto
+SUNPHARMA.NS,Sun Pharma,Healthcare
+DRREDDY.NS,Dr. Reddy's Laboratories,Healthcare
+CIPLA.NS,Cipla,Healthcare
+BHARTIARTL.NS,Bharti Airtel,Telecom
+TATASTEEL.NS,Tata Steel,Materials
+ULTRACEMCO.NS,UltraTech Cement,Materials
+LT.NS,Larsen & Toubro,Industrials
+ASIANPAINT.NS,Asian Paints,Consumer Discretionary
+TITAN.NS,Titan Company,Consumer Discretionary
+^NSEI,Nifty 50 Index,Benchmark
